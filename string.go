@@ -10,13 +10,13 @@ type stringAssertion struct {
 	s string
 }
 
-func (a stringAssertion) EqualTo(s string) {
+func (a stringAssertion) ToEqual(s string) {
 	if a.s != s {
 		a.t.Fatalf("expected '%s'; got '%s'", s, a.s)
 	}
 }
 
-func (a stringAssertion) MatchesPattern(pattern string) {
+func (a stringAssertion) ToMatchPattern(pattern string) {
 	matched, err := regexp.MatchString(pattern, a.s)
 	if err != nil {
 		a.t.Fatalf("unexpected error: %s", err.Error())

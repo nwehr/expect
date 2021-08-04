@@ -1,19 +1,26 @@
 package expect
 
-import "testing"
+import (
+	"testing"
+)
 
-type expect struct {
-	t *testing.T
+type severity int
+
+const (
+	_error severity = iota
+	_fatal
+)
+
+func Error(t *testing.T) assert {
+	return assert{
+		t:        t,
+		severity: _error,
+	}
 }
 
-func Expect(t *testing.T) expect {
-	return expect{t: t}
-}
-
-func (e expect) Int(n int) intAssertion {
-	return intAssertion{t: e.t, n: n}
-}
-
-func (e expect) String(s string) stringAssertion {
-	return stringAssertion{t: e.t, s: s}
+func Fatal(t *testing.T) assert {
+	return assert{
+		t:        t,
+		severity: _fatal,
+	}
 }

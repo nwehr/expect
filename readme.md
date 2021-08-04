@@ -7,17 +7,22 @@ An assertion library for Go unit testing.
 ```
 package my_package
 
-import "testing"
+import (
+    "testing"
+    "github.com/nwehr/expect"
+)
 
 func TestInts(t *testing.T) {
-    Expect(t).Int(1).ToEqual(1)
-    Expect(t).Int(5).ToBeGreaterThan(1)
-    Expect(t).Int(1).ToBeLessThan(10)
+    // fatally fail
+    expect.Fatal(t).Int(1).ToEqual(1)
+    expect.Fatal(t).Int(5).ToBeGreaterThan(1)
+    expect.Fatal(t).Int(1).ToBeLessThan(10)
 }
 
 func TestStrings(t *testing.T) {
-    Expect(t).String("abc123").ToEqual("abc123")
-    Expect(t).String("abc123").ToMatchPattern("abc[0-9]+")
+    // fail with error
+    expect.Error(t).String("abc123").ToEqual("abc123")
+    expect.Error(t).String("abc123").ToMatchPattern("abc[0-9]+")
 }
 
 ```

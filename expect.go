@@ -24,3 +24,13 @@ func Fatal(t *testing.T) assert {
 		severity: _fatal,
 	}
 }
+
+func fail(t *testing.T, msg string, sev severity) {
+	if sev == _fatal {
+		t.Fatal(msg)
+	}
+
+	if sev == _error {
+		t.Error(msg)
+	}
+}

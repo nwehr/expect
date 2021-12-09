@@ -11,6 +11,13 @@ const (
 	_fatal
 )
 
+func T(t *testing.T) assert {
+	return assert{
+		t:        t,
+		severity: _error,
+	}
+}
+
 func Error(t *testing.T) assert {
 	return assert{
 		t:        t,

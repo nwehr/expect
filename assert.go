@@ -31,3 +31,9 @@ func (e assert) UInt(n uint) uintAssertion {
 func (e assert) String(s string) stringAssertion {
 	return stringAssertion{t: e.t, s: s}
 }
+
+func (e assert) NoError(err error) {
+	if err != nil {
+		e.t.Errorf("unexpected error: %s", err)
+	}
+}

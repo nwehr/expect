@@ -37,3 +37,9 @@ func (e assert) NoError(err error) {
 		e.t.Errorf("unexpected error: %s", err)
 	}
 }
+
+func (e assert) Error(err error) {
+	if err == nil {
+		e.t.Errorf("expected error; got nil")
+	}
+}

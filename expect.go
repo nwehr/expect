@@ -18,20 +18,6 @@ func T(t *testing.T) assert {
 	}
 }
 
-func Error(t *testing.T) assert {
-	return assert{
-		t:        t,
-		severity: _error,
-	}
-}
-
-func Fatal(t *testing.T) assert {
-	return assert{
-		t:        t,
-		severity: _fatal,
-	}
-}
-
 func fail(t *testing.T, msg string, sev severity) {
 	if sev == _fatal {
 		t.Fatal(msg)

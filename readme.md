@@ -14,15 +14,20 @@ import (
 
 func TestInts(t *testing.T) {
     // fatally fail
-    expect.Fatal(t).Int(1).ToEqual(1)
-    expect.Fatal(t).Int(5).ToBeGreaterThan(1)
-    expect.Fatal(t).Int(1).ToBeLessThan(10)
+    expect.T(t).Int(1).ToEqual(1)
+    expect.T(t).Int(5).ToBeGreaterThan(1)
+    expect.T(t).Int(1).ToBeLessThan(10)
 }
 
 func TestStrings(t *testing.T) {
     // fail with error
-    expect.Error(t).String("abc123").ToEqual("abc123")
-    expect.Error(t).String("abc123").ToMatchPattern("abc[0-9]+")
+    expect.T(t).String("abc123").ToEqual("abc123")
+    expect.T(t).String("abc123").ToMatchPattern("abc[0-9]+")
+}
+
+func TestNoError(t *testing.T) {
+    var err error
+    expect.T(t).NoError(err)
 }
 
 ```
